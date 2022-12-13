@@ -1,0 +1,23 @@
+	Welcome to Meta Cables
+ Bill Number: 
+ Customer Name: Ibrahim Electric Store
+ Phone Number: 45000
+=======================================
+S.No  	Item Name		   Qty 	Price
+=======================================
+1	23/76 Single Core		     9	 9180
+=======================================
+		     Subtotal Rs. 9180
+		     Sales Tax Rs. 918.0
+---------------------------------------
+			Total Rs.  10098.0
+---------------------------------------
+
+
+
+
+
+
+
+
+-----------Thanks for shopping------------

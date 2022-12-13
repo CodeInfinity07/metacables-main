@@ -1,0 +1,23 @@
+	Welcome to Meta Cables
+ Bill Number: 
+ Customer Name: Usman Electric Store
+ Phone Number: 
+=======================================
+S.No  	Item Name		   Qty 	Price
+=======================================
+1	3/.029-24-Black		     3	 6915
+=======================================
+		     Subtotal Rs. 6015
+		     Discount Rs. 900
+---------------------------------------
+			Total Rs.  5115
+---------------------------------------
+
+
+
+
+
+
+
+
+-----------Thanks for shopping------------

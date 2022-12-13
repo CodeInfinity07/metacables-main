@@ -1,0 +1,23 @@
+	Welcome to Meta Cables
+ Bill Number: 
+ Customer Name: Usman Electric Store
+ Phone Number: 
+=======================================
+S.No  	Item Name		   Qty 	Price
+=======================================
+1	3/.029		     14	 32550
+=======================================
+		     Subtotal Rs. 32460
+		     Sales Tax Rs. 3246.0
+---------------------------------------
+			Total Rs.  35706.0
+---------------------------------------
+
+
+
+
+
+
+
+
+-----------Thanks for shopping------------
