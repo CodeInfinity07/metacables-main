@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2022 at 02:24 PM
+-- Generation Time: Dec 18, 2022 at 03:40 PM
 -- Server version: 8.0.31-0ubuntu0.22.04.1
 -- PHP Version: 8.1.12
 
@@ -40,7 +40,7 @@ CREATE TABLE `bill_book` (
 CREATE TABLE `customer` (
   `customer_id` int NOT NULL,
   `customer_name` varchar(50) NOT NULL,
-  `customer_phone` int NOT NULL
+  `customer_phone` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -95,7 +95,7 @@ CREATE TABLE `inventory` (
   `item_id` int NOT NULL,
   `quantity` int NOT NULL,
   `expense` int NOT NULL,
-  `date` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
+  `date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -103,10 +103,10 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `item_id`, `quantity`, `expense`, `date`) VALUES
-(1, 25, 86, 1750, '2022-08-04'),
-(2, 26, 70, 1750, '2022-08-04'),
+(1, 25, 81, 1750, '2022-08-04'),
+(2, 26, 55, 1750, '2022-08-04'),
 (3, 31, 30, 3600, '2022-08-04'),
-(4, 32, 30, 3600, '2022-08-04'),
+(4, 32, 24, 3600, '2022-08-04'),
 (5, 55, 51, 450, '2022-08-31'),
 (6, 55, 51, 450, '2022-08-31'),
 (7, 53, 50, 600, '2022-09-05'),
