@@ -23,6 +23,8 @@ class Bill_App:
         self.item_no=StringVar()
         self.item_discount = IntVar()
         self.item_name=StringVar()
+        self.date = StringVar()
+        self.date.set("")
         self.item_price=IntVar()
         self.item_quantity=IntVar()
         self.item_quantity.set(1)
@@ -86,7 +88,7 @@ class Bill_App:
 
         item_no_txt=customtkinter.CTkEntry(F2,width=300,textvariable=self.search_item_no,font=("Sawasdee",16,"bold")).grid(row=0,column=1,padx=0,pady=10)
 
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select * from stocks")
         rows=cur.fetchall()
@@ -113,20 +115,21 @@ class Bill_App:
         g2_lbl=customtkinter.CTkLabel(F3,text="Item Name:",font=("Sawasdee",16,"bold")).grid(row=0,column=0,padx=0,pady=10,sticky="w")
         g2_txt=customtkinter.CTkLabel(F3,textvariable=self.item_name,font=("Sawasdee",16,"bold")).grid(row=0,column=1,padx=10,pady=10,stick="w")
 
-        g3_lbl=customtkinter.CTkLabel(F3,text="Price:",font=("Sawasdee",16,"bold")).grid(row=1,column=0,padx=0,pady=10,sticky="w")
-        g3_txt=customtkinter.CTkLabel(F3,textvariable=self.item_price,font=("Sawasdee",16,"bold")).grid(row=1,column=1,padx=10,pady=10,stick="w")
+        g4_lbl=customtkinter.CTkLabel(F3,text="Color:",font=("Sawasdee",16,"bold")).grid(row=1,column=0,padx=0,pady=10,sticky="w")
+        g4_txt=customtkinter.CTkLabel(F3,textvariable=self.item_color,font=("Sawasdee",16,"bold")).grid(row=1,column=1,padx=10,pady=10,stick="w")
 
-        g4_lbl=customtkinter.CTkLabel(F3,text="Color:",font=("Sawasdee",16,"bold")).grid(row=2,column=0,padx=0,pady=10,sticky="w")
-        g4_txt=customtkinter.CTkLabel(F3,textvariable=self.item_color,font=("Sawasdee",16,"bold")).grid(row=2,column=1,padx=10,pady=10,stick="w")
+        g5_lbl=customtkinter.CTkLabel(F3,text="Guage:",font=("Sawasdee",16,"bold")).grid(row=2,column=0,padx=0,pady=10,sticky="w")
+        g5_txt=customtkinter.CTkLabel(F3,textvariable=self.item_guage,font=("Sawasdee",16,"bold")).grid(row=2,column=1,padx=10,pady=10,stick="w")
 
-        g5_lbl=customtkinter.CTkLabel(F3,text="Guage:",font=("Sawasdee",16,"bold")).grid(row=3,column=0,padx=0,pady=10,sticky="w")
-        g5_txt=customtkinter.CTkLabel(F3,textvariable=self.item_guage,font=("Sawasdee",16,"bold")).grid(row=3,column=1,padx=10,pady=10,stick="w")
+        item_qty_lbl=customtkinter.CTkLabel(F3,text="Item Quantity: ",font=("Sawasdee",16,"bold")).grid(row=3,column=0,padx=0,pady=10,sticky="w")
+        item_qty_txt=customtkinter.CTkEntry(F3,width=80,textvariable=self.item_quantity,font=("Sawasdee",16,"bold")).grid(row=3,column=1,padx=10,pady=10)
 
-        item_qty_lbl=customtkinter.CTkLabel(F3,text="Item Quantity: ",font=("Sawasdee",16,"bold")).grid(row=4,column=0,padx=0,pady=10,sticky="w")
-        item_qty_txt=customtkinter.CTkEntry(F3,width=80,textvariable=self.item_quantity,font=("Sawasdee",16,"bold")).grid(row=4,column=1,padx=10,pady=10)
+        item_discount_lbl=customtkinter.CTkLabel(F3,text="Item Price: ",font=("Sawasdee",16,"bold")).grid(row=4,column=0,padx=0,pady=10,sticky="w")
+        item_discount_txt=customtkinter.CTkEntry(F3,width=80,textvariable=self.item_price,font=("Sawasdee",16,"bold")).grid(row=4,column=1,padx=10,pady=10)
 
-        item_discount_lbl=customtkinter.CTkLabel(F3,text="Item Discount: ",font=("Sawasdee",16,"bold")).grid(row=5,column=0,padx=0,pady=10,sticky="w")
-        item_discount_txt=customtkinter.CTkEntry(F3,width=80,textvariable=self.item_discount,font=("Sawasdee",16,"bold")).grid(row=5,column=1,padx=10,pady=10)
+        date_lbl=customtkinter.CTkLabel(F3,text="Date: ",font=("Sawasdee",16,"bold")).grid(row=5,column=0,padx=0,pady=10,sticky="w")
+        date_txt=customtkinter.CTkEntry(F3,width=80,textvariable=self.date,font=("Sawasdee",16,"bold")).grid(row=5,column=1,padx=10,pady=10)
+
 
         search_name_btn=customtkinter.CTkButton(F3,command=self.add_item,text="Add",width=11,font=("Sawasdee",15,"bold")).grid(row=6,column=1,padx=5,pady=5)
 
@@ -177,7 +180,7 @@ class Bill_App:
         F6=LabelFrame(self.root, text="Registered Customers",font=("Sawasdee",15,"bold"))
         F6.place(x=0,y=545,relwidth=1,height=140)
 
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select customer_name from registered_customers")
         rows=cur.fetchall()
@@ -226,7 +229,7 @@ class Bill_App:
         if self.search_item_no.get()=="":
             messagebox.showerror("Error","No input entered")
             return
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select item_no,name,price,color,guage from stocks where item_no='{self.search_item_no.get()}'")
         rows=cur.fetchall()
@@ -251,7 +254,7 @@ class Bill_App:
         self.item_color.set(value)
 
     def add_item(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select quantity from inventory where item_id={self.item_no.get()}")
         rows=cur.fetchall()
@@ -277,7 +280,7 @@ class Bill_App:
             self.Stock_Table.insert('',END, values=new_item)
 
     def bill_area(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         total=0
         # if self.c_phon.get()=='' or self.c_name.get()=='':
@@ -299,21 +302,23 @@ class Bill_App:
         else:
             self.bill_type.set(0)
             customer_id=random.randint(1,1000)
-            cur.execute(f"insert into customer values ({customer_id},'{self.c_name.get()}',{self.c_phon.get()})")
+            cur.execute(f"insert into customer values ({customer_id},'{self.c_name.get()}','{self.c_phon.get()}')")
             con.commit()
 
         for each in listOfEntriesInTreeView:
-            statement = f"SELECT MAX( id ) FROM sales_stocks;"
+            statement = f"SELECT MAX( id ) FROM sales_bill;"
             cur.execute(statement)
-            ans = cur.fetchall()
-            ans = ans[0][0]
-            ans = int(ans) + 1
+            try:
+                ans = cur.fetchall()
+                ans = ans[0][0]
+                ans = int(ans) + 1
+            except:
+                ans = 1
             if ans <= 100:
                 self.bill_no.set("1-"+str(ans))
             else:
                 temp_ans = ans/100
-                temp_ans2 = ans - temp_ans*100;
-                self.bill_no.set(str(temp_ans)+"-"+str(temp_ans2))
+                self.bill_no.set(str(temp_ans)+"-"+str(ans))
             statement=f"insert into sales_stocks (inv_id,item_no,qty) values ('{self.bill_no.get()}',{self.Stock_Table.item(each)['values'][0]},{self.Stock_Table.item(each)['values'][2]})"
             cur.execute(statement)
             con.commit()
@@ -341,34 +346,40 @@ class Bill_App:
             i=i+1
         self.txtarea.insert(END,f"\n=================================================")
         self.txtarea.insert(END,f"\n\t\t            Subtotal Rs. {temp_total}")
-        self.txtarea.insert(END,f"\n\t\t            Discount Rs. {self.total_discount.get()}")
         self.txtarea.insert(END,"\n--------------------------------------------------")
         self.txtarea.insert(END,f"\n\t\t\tTotal Rs.  {total}")
         self.txtarea.insert(END,"\n--------------------------------------------------")
         self.txtarea.insert(END,"\n\n\n\n\n\n\n\n\n-----------Thanks for shopping------------")
         self.save_bill()
 
-        #==============Save the bill to database================
-        # statement = f"SELECT Auto_increment FROM information_schema.tables WHERE table_name='sales_bill'"
-        # cur.execute(statement)
-        # ans = cur.fetchall()
-        # if ans[0] <= 100:
-        #     self.bill_no.set("1-"+str(ans[0]))
-        # else:
-        #     temp_ans = ans[0]/100
-        #     temp_ans2 = ans[0] - temp_ans*100;
-        #     self.bill_no.set(str(temp_ans)+"-"+str(temp_ans2))
-        statement=f"insert into sales_bill (inv_id,date,amount,customer_id,is_registered) values ('{self.bill_no.get()}','{datetime.today().strftime('%Y-%m-%d')}',{total},{customer_id},{self.bill_type.get()}) "
+        statement = f"SELECT MAX( id ) FROM sales_bill;"
+        cur.execute(statement)
+        try:
+            ans = cur.fetchall()
+            ans = ans[0][0]
+            ans = int(ans) + 1
+        except:
+            ans = 1
+        if ans <= 100:
+            self.bill_no.set("1-"+str(ans))
+        else:
+            temp_ans = ans/100
+            self.bill_no.set(str(temp_ans)+"-"+str(ans))
+        if self.date == "":
+            statement=f"insert into sales_bill (inv_id,date,amount,customer_id,is_registered) values ('{self.bill_no.get()}','{datetime.today().strftime('%Y-%m-%d')}',{total},{customer_id},{self.bill_type.get()}) "
+        else:
+            statement=f"insert into sales_bill (inv_id,date,amount,customer_id,is_registered) values ('{self.bill_no.get()}','{self.date.get()}',{total},{customer_id},{self.bill_type.get()}) "
+
         cur.execute(statement)
         con.commit()
         con.close()
+        messagebox.showinfo("Saved",f"Bill No. :{self.bill_no.get()} saved Successfully.")
 
     def save_bill(self):
         self.bill_data=self.txtarea.get('1.0',END)
         f1=open("generated_bill/"+self.bill_no.get()+".txt","w")
         f1.write(self.bill_data)
         f1.close()
-        messagebox.showinfo("Saved",f"Bill No. :{self.bill_no.get()} saved Successfully.")
 
     def welcome_bill(self):
         self.txtarea.delete('1.0',END)
@@ -391,6 +402,7 @@ class Bill_App:
         cursor_row=self.Stock_Table.focus()
         contents=self.Stock_Table.item(cursor_row)
         row=contents['values']
+        print("CC")
         print(row)
         self.item_no.set(row[0])
         self.item_name.set(row[1])
@@ -413,7 +425,7 @@ class Bill_App:
         self.welcome_bill()
 
     def find_bill(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select * from sales_bill where inv_id='{self.search_bill.get()}'")
         rows=cur.fetchall()
@@ -465,7 +477,7 @@ class Bill_App:
         self.txtarea.insert(END,"\n\n\n\n\n\n\n\n\n-----------Thanks for shopping------------")
 
     # def showOption(self):
-    #     con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+    #     con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
     #     cur=con.cursor()
     #     cur.execute(f"select customer_name from registered_customers")
     #     rows=cur.fetchall()
@@ -477,7 +489,7 @@ class Bill_App:
     #         om1.grid(row=2,column=5)
 
     def displayCustomer(self, option):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select * from registered_customers where customer_name='{option}' limit 1")
         rows=cur.fetchall()

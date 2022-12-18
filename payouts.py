@@ -133,7 +133,7 @@ class Payout:
         self.Stock_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_payout(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into payouts (employee_id,amount,date) values ('{self.employee_id.get()}',{self.amount.get()},'{datetime.today().strftime('%Y-%m-%d')}')"
         cur.execute(statement)
@@ -144,7 +144,7 @@ class Payout:
 
     def get_employees(self):
         global Manage_Frame, dict_options
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"select * from employee"
         cur.execute(statement)
@@ -165,7 +165,7 @@ class Payout:
         for i,j in dict_options.items():
             if j==value:
                 position = int(i)
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"select id,amount,date from payouts where employee_id={position}"
         self.employee_id.set(position)
@@ -187,7 +187,7 @@ class Payout:
         con.close()
 
     def fetch_employee_payout(self, position):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"select id,amount,date from payouts where employee_id={position}"
         self.employee_id.set(position)
@@ -209,7 +209,7 @@ class Payout:
         con.close()
 
     def fetch_date(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute("select id,amount,date from payouts")
         rows=cur.fetchall()
@@ -234,7 +234,7 @@ class Payout:
 
 
     def clear_salary(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into payouts (employee_id,amount,date) values ('{self.employee_id.get()}',{self.salary.get()},'{datetime.today().strftime('%Y-%m-%d')}')"
         cur.execute(statement)
@@ -244,7 +244,7 @@ class Payout:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from employee where id='{self.employee_id.get()}'")
         con.commit()
@@ -253,7 +253,7 @@ class Payout:
         self.clear()
 
     # def search_data(self):
-    #     con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+    #     con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
     #     cur=con.cursor()
     #     if f'{self.search_by.get()}'=='Item No':
     #         statement=f"select * from stocks where item_no='{self.search_txt.get()}'"

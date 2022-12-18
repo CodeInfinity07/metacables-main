@@ -150,7 +150,7 @@ class Stock:
         self.Stock_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_stock(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into stocks (name,price,color,guage) values ('{self.item_name.get()}',{self.item_price.get()},'{self.item_color.get()}','{self.item_guage.get()}')"
         cur.execute(statement)
@@ -160,7 +160,7 @@ class Stock:
         con.close()
 
     def getItems(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"select item_no from stocks"
         cur.execute(statement)
@@ -173,7 +173,7 @@ class Stock:
         return item_list
 
     def fetch_date(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute("select item_no,name,price,color,guage from stocks")
         rows=cur.fetchall()
@@ -199,7 +199,7 @@ class Stock:
         self.item_price.set(row[2])
         self.item_color.set(row[3])
         self.item_guage.set(row[4])
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"select quantity from inventory where item_id = {row[0]}"
         cur.execute(statement)
@@ -213,7 +213,7 @@ class Stock:
         con.close()
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"update stocks set item_no='{self.item_no.get()}', price={self.item_price.get()},name='{self.item_name.get()}',color='{self.item_color.get()}',guage='{self.item_guage.get()}' where item_no={self.item_no.get()}"
         cur.execute(statement)
@@ -223,7 +223,7 @@ class Stock:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from stocks where item_no='{self.item_no.get()}'")
         con.commit()
@@ -232,7 +232,7 @@ class Stock:
         self.clear()
 
     def restock(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into inventory (item_id,quantity,expense,date) values ({self.item_id.get()},{self.stock_quantity.get()},{self.expense.get()},'{datetime.today().strftime('%Y-%m-%d')}')"
         cur.execute(statement)

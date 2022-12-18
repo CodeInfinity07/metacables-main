@@ -125,7 +125,7 @@ class Customer:
         self.Customer_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_customer(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into registered_customers (customer_name, customer_contact, customer_address) values ('{self.customer_name.get()}','{self.customer_contact.get()}','{self.customer_address.get()}')"
         cur.execute(statement)
@@ -135,7 +135,7 @@ class Customer:
         con.close()
 
     def fetch_date(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute("select * from registered_customers")
         rows=cur.fetchall()
@@ -161,7 +161,7 @@ class Customer:
         self.customer_address.set(row[3])
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"update registered_customers set customer_name='{self.customer_name.get()}', customer_contact={self.customer_contact.get()}, customer_address='{self.customer_address.get()}' where id={self.customer_id.get()}"
         cur.execute(statement)
@@ -171,7 +171,7 @@ class Customer:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from registered_customers where id='{self.customer_id.get()}'")
         con.commit()
@@ -180,7 +180,7 @@ class Customer:
         self.clear()
 
     def search_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         if f'{self.search_by.get()}'=='Name':
             statement=f"select * from registered_customers where customer_name='{self.search_txt.get()}'"

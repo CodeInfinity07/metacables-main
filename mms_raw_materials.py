@@ -115,7 +115,7 @@ class Raw:
         self.Stock_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_stock(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into raw_materials (name,quantity,price,date) values ('{self.name.get()}',{self.quantity.get()},'{self.cost.get()}','{datetime.today().strftime('%Y-%m-%d')}')"
         cur.execute(statement)
@@ -125,7 +125,7 @@ class Raw:
         con.close()
 
     def fetch_date(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute("select * from raw_materials")
         rows=cur.fetchall()
@@ -151,7 +151,7 @@ class Raw:
         self.cost.set(row[3])
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"update raw_materials set quantity={self.quantity.get()}, name='{self.name.get()}', price = '{self.cost.get()}' where id={self.id.get()}"
         cur.execute(statement)
@@ -161,7 +161,7 @@ class Raw:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from raw_materials where id='{self.id.get()}'")
         con.commit()

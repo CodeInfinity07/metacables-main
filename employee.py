@@ -131,7 +131,7 @@ class Employee:
         self.Stock_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_employee(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into employee (name,contact_no,date,salary) values ('{self.name.get()}',{self.contact.get()},'{datetime.today().strftime('%Y-%m-%d')}',{self.salary.get()})"
         cur.execute(statement)
@@ -141,7 +141,7 @@ class Employee:
         con.close()
 
     def fetch_date(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute("select * from employee")
         rows=cur.fetchall()
@@ -167,7 +167,7 @@ class Employee:
         self.contact.set(row[2])
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"update employee set name='{self.name.get()}', contact_no={self.contact.get()}, salary={self.salary.get()} where id={self.employee_id.get()}"
         cur.execute(statement)
@@ -177,7 +177,7 @@ class Employee:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from employee where id='{self.employee_id.get()}'")
         con.commit()
@@ -186,7 +186,7 @@ class Employee:
         self.clear()
 
     # def search_data(self):
-    #     con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+    #     con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
     #     cur=con.cursor()
     #     if f'{self.search_by.get()}'=='Item No':
     #         statement=f"select * from stocks where item_no='{self.search_txt.get()}'"

@@ -52,7 +52,7 @@ class Order:
         m_title=customtkinter.CTkLabel(Manage_Frame, text="Manage Stocks", font=("Sawasdee",30,"bold"))
         m_title.grid(row=0,columnspan=2,pady=20)
 
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select customer_name from registered_customers")
         rows=cur.fetchall()
@@ -139,7 +139,7 @@ class Order:
         self.Stock_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def fetch_date(self, cust_id):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select inv_id,date,amount,is_paid from sales_bill where customer_id = '{cust_id}'")
         rows=cur.fetchall()
@@ -171,7 +171,7 @@ class Order:
         self.is_paid.set(row[3])
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"update sales_bill set is_paid=1 where inv_id='{self.inv_id.get()}'"
         cur.execute(statement)
@@ -181,7 +181,7 @@ class Order:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from stocks where item_no='{self.item_no.get()}'")
         con.commit()
@@ -192,7 +192,7 @@ class Order:
     def displayCustomer(self, option):
         if self.Stock_Table.get_children():
             self.Stock_Table.delete(*self.Stock_Table.get_children())
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"select * from registered_customers where customer_name='{option}' limit 1")
         rows=cur.fetchall()
@@ -202,7 +202,7 @@ class Order:
                 self.fetch_date(row[0])
 
     def search_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         if f'{self.search_by.get()}'=='Item No':
             statement=f"select * from stocks where item_no='{self.search_txt.get()}'"

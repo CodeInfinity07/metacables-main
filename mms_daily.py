@@ -127,7 +127,7 @@ class Daily:
         self.Customer_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_expense(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"insert into daily_expenses (expense_name, expense_cost, date) values ('{self.expense_name.get()}','{self.expense_cost.get()}', '{datetime.today().strftime('%m/%d/%y')}')"
         cur.execute(statement)
@@ -138,7 +138,7 @@ class Daily:
 
     def fetch_date(self):
         self.Customer_Table.delete(*self.Customer_Table.get_children())
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         t_date = self.cal.get_date()
         cur.execute(f"select * from daily_expenses where date = '{t_date}'")
@@ -163,7 +163,7 @@ class Daily:
         self.expense_cost.set(row[2])
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         statement=f"update daily_expenses set expense_name='{self.expense_name.get()}', expense_cost={self.expense_cost.get()} where id={self.expense_id.get()}"
         cur.execute(statement)
@@ -173,7 +173,7 @@ class Daily:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         cur.execute(f"delete from daily_expenses where id='{self.expense_id.get()}'")
         con.commit()
@@ -182,7 +182,7 @@ class Daily:
         self.clear()
 
     def search_data(self):
-        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main")
+        con=pymysql.connect(host="localhost",user="ryzon",password="zain0980",database="meta_main2")
         cur=con.cursor()
         if f'{self.search_by.get()}'=='Name':
             statement=f"select * from daily_expenses where expense_name='{self.search_txt.get()}'"
